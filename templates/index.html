@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Underwater Image Enhancer</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Underwater Image Enhancer</h1>
+        <p>Mejorá tus fotos subacuáticas con inteligencia artificial</p>
+    </header>
+
+    <main>
+        <!-- Zona de Upload -->
+        <section id="upload-section">
+            <div id="drop-zone">
+                <div id="drop-zone-content">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    <p>Arrastrá tu foto acá o hacé click para seleccionar</p>
+                    <span class="hint">JPG, PNG, BMP, TIFF, WebP - Máximo 16 MB</span>
+                </div>
+                <input type="file" id="file-input" accept="image/*" hidden>
+            </div>
+
+            <!-- Selector de método -->
+            <div id="method-selector">
+                <label>Método de mejoramiento:</label>
+                <div class="method-options">
+                    <button class="method-btn active" data-method="opencv">
+                        <strong>OpenCV</strong>
+                        <span>Rápido, sin IA</span>
+                    </button>
+                    <button class="method-btn" data-method="waternet">
+                        <strong>WaterNet</strong>
+                        <span>IA (más lento, mejor calidad)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Preview de imagen seleccionada -->
+            <div id="preview-section" class="hidden">
+                <img id="preview-image" alt="Vista previa">
+                <button id="enhance-btn">Mejorar imagen</button>
+            </div>
+        </section>
+
+        <!-- Spinner de carga -->
+        <div id="loading" class="hidden">
+            <div class="spinner"></div>
+            <p id="loading-text">Procesando imagen...</p>
+        </div>
+
+        <!-- Resultado: Slider Antes/Después -->
+        <section id="result-section" class="hidden">
+            <h2>Resultado</h2>
+            <div id="comparison-container">
+                <div id="comparison-wrapper">
+                    <img id="img-enhanced" alt="Imagen mejorada">
+                    <div id="img-original-overlay">
+                        <img id="img-original" alt="Imagen original">
+                    </div>
+                    <input type="range" id="comparison-slider" min="0" max="100" value="50">
+                    <div id="slider-line"></div>
+                    <span class="label label-left">Original</span>
+                    <span class="label label-right">Mejorada</span>
+                </div>
+            </div>
+            <div id="result-actions">
+                <a id="download-btn" download>Descargar imagen mejorada</a>
+                <button id="new-image-btn">Procesar otra imagen</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Underwater Image Enhancer &mdash; Hecho con Flask + WaterNet + OpenCV</p>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
